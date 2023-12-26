@@ -1,66 +1,139 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Order App (Prueba)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Proyecto con Laravel 10.x
 
-## About Laravel
+- Lenguaje [PHP 8.1.25](https://www.php.net/)
+- Base de Datos [MySQL](https://www.mysql.com/)
+- UX diseñado con [Bootstrapcdn 5.0.0](https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css/)
+- Testing Backend con [Phpunit](https://phpunit.de/)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Requisitos de Sistema
+- Extensión SOAP `sudo apt-get install php-soap`
+- Extensión SQLite `sudo apt-get install ext-sqlite3`
+- Extensión XML `sudo apt-get install php-xml`
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Documentación
+Toda la Documentación del Proyecto está en el archivo `docs.pdf`.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Repositorio
+Lo primero que se debe de hacer, es descargar el Repositorio en nuestra máquina local.
 
-## Learning Laravel
+`cd ~/code`
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+`git clone  <repository>`
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+**Nota:** Será necesario configurar una clave SSH para poder clonar el Repositorio.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Usuario Git
+Se debe configurar el usuario del Repositorio local mediante:
 
-## Laravel Sponsors
+`git config user.name "TuNombre"`
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+`git config user.email "TuEmail@example.com"`
 
-### Premium Partners
+### Ramas
+Existen dos ramas principales:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- master: Dónde se encuentra el código de Producción
+- develop: La rama que utilizamos para desarrollar en local. Se debe hacer pull de esta rama para mantenerse actualizado.
 
-## Contributing
+Para desarrollar nuevas funcionalidades:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- features: Una rama por cada feature, debe nombrarse como ‘ft/<nombre>’
+- hotfixes: Una rama por cada bug, debe nombrarse como 'hf/<nombre>'
 
-## Code of Conduct
+### Base de Datos
+Por defecto el entorno debe instalado MySQL y creará tantas Base de Datos como se necesiten.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Setup
+Una vez descargado el Repositorio del proyecto, se deben ejecutar los siguientes comandos para realizar el setup:
 
-## Security Vulnerabilities
+### Dependencias
+ 
+- Instalar dependencias Back con `composer install`
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- (En caso de problemas) En Ubuntu, deberemos instalar `apt-get install libpng-dev -y --no-install-recommends`
 
-## License
+### Configuración
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- Generar la clave de la aplicación con:
+
+ `php artisan key:generate`
+
+### Variables de Entorno
+
+Hay que copiar el archivo **.env.example** como **.env** en la misma ruta y modificar su contenido
+según corresponda. Las variables más importantes a modificar son:
+
+- APP_URL=order-app.test
+- DB_DATABASE=order
+- DB_USERNAME=order
+- DB_PASSWORD=order
+
+## Mailtrap
+Es recomendable crear una cuenta en Mailtrap para el desarrollo local. Mailtrap será un buzón de correo ficticio a donde
+se enviarán todos los emails de la Aplicación.
+
+- MAIL_MAILER=smtp
+- MAIL_HOST=smtp.mailtrap.io
+- MAIL_PORT=2525
+- MAIL_USERNAME=
+- MAIL_PASSWORD=
+
+## Setup de Base de Datos MySQL
+La Base de Datos está definida mediante migraciones y seeders de Laravel. Para montarla, desde la máquina virtual:
+
+`php artisan migrate`
+
+Y para rellenar con datos de prueba:
+
+`php artisan db:seed` 
+
+También se pueden hacer ambas cosas a la vez con:
+
+`php artisan migrate --seed`
+
+Para reconstruirla
+
+`php artisan migrate:fresh`
+
+Para reconstruir y rellenar con datos:
+
+`php artisan migrate:fresh --seed`
+
+## Testing
+
+>La BBDD del entorno de pruebas, por defecto hace uso de SQLite.
+Por esta razón, será necesario crear un archivo **testing.sqlite** en el directorio **database**.
+>
+> `touch database/testing.sqlite`
+
+Los test para el Back se encuentran en el directorio __tests__ y se ejecutan mediante **PhpUnit**, 
+atendiendo al archivo de configuración **phpunit.xml**
+
+Se puede ejecutar toda la suit de tests con:
+ 
+ `vendor/bin/phpunit`
+ 
+ Para filtrar por clases:
+ 
+ `vendor/bin/phpunit --filter [CLASE]`
+
+## Live App
+App de Desarrollo: [No aplica](https://jonsanchezr.github.io/)
+
+App de Producción: [No aplica](https://jonsanchezr.github.io/)
+
+## Licencia
+No definida
+
+## Documentación
+Existe más documentación en el archivo docs.pdf de este Repositorio.
+
+## Autor
+Jonathan Sanchez - jsanchez.dev1991@gmail.com
+
+## Screenshot
+[![screenshot-1](https://raw.githubusercontent.com/jonsanchezr/order-app-prueba/main/screenshot-1.jpeg "screenshot-1")](https://raw.githubusercontent.com/jonsanchezr/order-app-prueba/main/screenshot-1.jpeg "screenshot-1")
+
+[![screenshot-2](https://raw.githubusercontent.com/jonsanchezr/order-app-prueba/main/screenshot-2.jpeg "screenshot-2")](https://raw.githubusercontent.com/jonsanchezr/order-app-prueba/main/screenshot-2.jpeg "screenshot-2")
